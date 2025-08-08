@@ -1,27 +1,33 @@
-// Complete the js code
+// Car constructor
 function Car(make, model) {
-	this.make=make;
-	this.model=model;
+    this.make = make;
+    this.model = model;
 }
-Car.prototype.getMakeModel=function (){
-	return'${this.make} ${this.model}';
+
+// Add method to Car prototype
+Car.prototype.getMakeModel = function () {
+    return this.make + " " + this.model;
 };
 
-//SportCar Constructor
-
+// SportsCar constructor (inherits from Car)
 function SportsCar(make, model, topSpeed) {
-	Car.call (this, make, model);
-	this.topSpeed=topSpeed;
+    // Call Car constructor to initialize make and model
+    Car.call(this, make, model);
+    this.topSpeed = topSpeed;
 }
 
-	SportsCar.prototype=object.create(car.prototype);
-	SportsCar.protoptype.constructor=SportsCar;
+// Inherit from Car prototype
+SportsCar.prototype = Object.create(Car.prototype);
 
-	SportsCar.prototype.getTopSpeed=function () {
-		return this.topSpeed;
-	};
+// Reset constructor reference
+SportsCar.prototype.constructor = SportsCar;
 
-// Do not change the code below
+// Add method to SportsCar prototype
+SportsCar.prototype.getTopSpeed = function () {
+    return this.topSpeed;
+};
+
+// Example usage:
 const car = new SportsCar("Ferrari", "Testarossa", 200);
-window.Car = Car;
-window.SportsCar = SportsCar;
+console.log(car.getMakeModel()); // Ferrari Testarossa
+console.log(car.getTopSpeed());  // 200
